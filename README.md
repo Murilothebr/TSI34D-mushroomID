@@ -1,6 +1,12 @@
-## Problem Track
+## 🍄 Mushroom Id
 
-"Problem Track" is the ultimate solution for organizations seeking to enhance their problem resolution processes, drive operational efficiency, and deliver exceptional customer experiences.
+Bem-vindo ao Mushroom Id! Este projeto tem como objetivo auxiliar no aprendizado da identificação de cogumelos através de um sistema interativo de quiz.
+
+## 📌 Sobre o Projeto
+O sistema permite que administradores cadastrem novas espécies de cogumelos com imagens e descrições. Os usuários podem visualizar esses cogumelos em forma de cards e tentar adivinhar a espécie correta com base nas informações fornecidas.
+
+## 🎯 Objetivo
+O projeto busca tornar o aprendizado sobre cogumelos mais acessível e dinâmico, promovendo conscientização e evitando erros na identificação, que podem ter consequências graves.
 
 ### Dependências
 
