@@ -14,6 +14,9 @@ html
 # Ignore cache folder
 .cache/*
 
+# Ignore .env
+.env
+
 # Ignore files and folders inside uploads but keep it
 /public/assets/uploads/*
 !/public/assets/uploads/.gitkeep
