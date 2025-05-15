@@ -26,6 +26,13 @@ class AuthenticationsController extends Controller
             Auth::login($user);
 
             FlashMessage::success('Login realizado com sucesso!');
+
+            if ($user->is_admin) {
+                $this->redirectTo(route('admin.index'));
+            }
+
+            $this->redirectTo(route('mushrooms.index'));
+
             $this->redirectTo(route('mushrooms.index'));
         } else {
             FlashMessage::danger('Email e/ou senha inválidos!');

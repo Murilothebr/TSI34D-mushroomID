@@ -7,7 +7,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     encrypted_password VARCHAR(255) NOT NULL,
-    avatar_name VARCHAR(65)
+    is_admin TINYINT(1) DEFAULT 0
 );
 
 SET foreign_key_checks = 1;

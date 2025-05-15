@@ -1,0 +1,10 @@
+DB reset
+
+docker compose cp database/schema.sql db:/tmp/
+docker compose exec db sh -c "MYSQL_PWD=admin mysql -u admin mushroomId --default-character-set utf8mb4 < /tmp/schema.sql"
+
+----------------------------------------------------------------------
+
+Db populate
+docker compose exec php php database/Populate/populate.php
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\AdminController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthenticationsController;
 use App\Controllers\MushroomController;
@@ -13,6 +14,7 @@ Route::post('/login', [AuthenticationsController::class, 'authenticate'])->name(
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('root');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/mushrooms', [MushroomController::class, 'index'])->name('mushrooms.index');
 
     // Logout

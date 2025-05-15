@@ -10,12 +10,12 @@ use Core\Database\ActiveRecord\Model;
  * @property string $name
  * @property string $email
  * @property string $encrypted_password
- * @property string $avatar_name
+ * @property string $is_admin
  */
 class User extends Model
 {
     protected static string $table = 'users';
-    protected static array $columns = ['name', 'email', 'encrypted_password', 'avatar_name'];
+    protected static array $columns = ['name', 'email', 'encrypted_password', 'is_admin'];
 
     protected ?string $password = null;
     protected ?string $password_confirmation = null;
@@ -24,7 +24,6 @@ class User extends Model
     {
         Validations::notEmpty('name', $this);
         Validations::notEmpty('email', $this);
-
         Validations::uniqueness('email', $this);
 
         if ($this->newRecord()) {

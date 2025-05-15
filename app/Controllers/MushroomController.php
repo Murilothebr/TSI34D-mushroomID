@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use Core\Http\Controllers\Controller;
 use Core\Http\Request;
-use Lib\FlashMessage;
 
 class MushroomController extends Controller
 {

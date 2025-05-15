@@ -119,7 +119,7 @@ abstract class Model
         return !empty($this->errors);
     }
 
-    public function errors(string $index = null): string | null
+    public function errors(?string $index = null): ?string
     {
         if (isset($this->errors[$index])) {
             return $this->errors[$index];
@@ -281,7 +281,7 @@ abstract class Model
         return $models;
     }
 
-    public static function paginate(int $page = 1, int $per_page = 10, string $route = null): Paginator
+    public static function paginate(int $page = 1, int $per_page = 10, ?string $route = null): Paginator
     {
         return new Paginator(
             class: static::class,
