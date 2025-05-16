@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Acceptance\Authentication;
+namespace Tests\Acceptance;
 
 use App\Models\User;
 use Tests\Acceptance\BaseAcceptanceCest;
@@ -40,5 +40,15 @@ class LoginCest extends BaseAcceptanceCest
 
         $page->see('Email e/ou senha inválidos!');
         $page->seeInCurrentUrl('/login');
+    }
+
+
+    public function restrictedAreaWithoutAuthentication(AcceptanceTester $page): void
+    {
+        $page->amOnPage('/admin');
+
+        $page->seeResponseCodeIs(403);
+        $page->see('403 Forbidden');
+        $page->see('Você não tem permissão para acessar esta página.');
     }
 }

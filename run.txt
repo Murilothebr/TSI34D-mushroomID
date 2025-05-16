@@ -8,3 +8,8 @@ docker compose exec db sh -c "MYSQL_PWD=admin mysql -u admin mushroomId --defaul
 Db populate
 docker compose exec php php database/Populate/populate.php
 
+---------------------------------------------------------------------
+
+Run tests
+
+docker compose run --rm php ./vendor/bin/phpunit tests --color
