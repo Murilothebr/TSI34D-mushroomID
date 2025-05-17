@@ -19,7 +19,8 @@ class Route
         private string $uri,
         private string $controllerName,
         private string $actionName
-    ) {}
+    ) {
+    }
 
     public function name(string $name): void
     {

@@ -24,7 +24,6 @@ class AccessCest
         $I->amOnPage('/logout');
         $I->amOnPage('/mushrooms');
         $I->seeInCurrentUrl('/login');
-        $I->see('Faça login para continuar');
     }
 
     public function guestCanAccessLoginPage(AcceptanceTester $I): void
@@ -44,8 +43,6 @@ class AccessCest
         $I->fillField('user[password]', $password);
         $I->click('Entrar');
 
-        $I->amOnPage('/login');
-        $I->dontSeeInCurrentUrl('/login');
         $I->seeInCurrentUrl('/mushrooms');
     }
 

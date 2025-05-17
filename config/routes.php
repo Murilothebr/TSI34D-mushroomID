@@ -4,8 +4,6 @@ use App\Controllers\AdminController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthenticationsController;
 use App\Controllers\MushroomController;
-
-
 use Core\Router\Route;
 
 // Authentication

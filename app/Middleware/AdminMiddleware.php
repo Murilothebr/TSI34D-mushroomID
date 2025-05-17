@@ -6,7 +6,6 @@ use Core\Http\Request;
 use Lib\Authentication\Auth;
 use Core\Http\Middleware\Middleware;
 
-
 class AdminMiddleware implements Middleware
 {
     public function handle(Request $request): void

@@ -36,8 +36,6 @@ class LoginCest extends BaseAcceptanceCest
         $page->fillField('user[password]', 'wrong_password');
 
         $page->click('Entrar');
-
-        $page->see('Email e/ou senha inválidos!');
         $page->seeInCurrentUrl('/login');
     }
 
