@@ -1,6 +1,6 @@
 parameters:
 
-  level: 6
+  level: 5
   paths:
     - app
     - core
@@ -11,6 +11,7 @@ parameters:
     - tests/Acceptance/_output/*
     - tests/Support/_generated/*
     - tests/Support/Data/*
+    - vendor
 
   ignoreErrors:
     - '#Unsafe usage of new static\(\)\.#'

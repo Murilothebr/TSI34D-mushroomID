@@ -111,7 +111,7 @@ class Paginator
         $stmt->execute();
 
         $this->totalOfRegisters = $stmt->fetchColumn();
-        $this->totalOfPages = ceil($this->totalOfRegisters / $this->per_page);
+        $this->totalOfPages = (int) ceil($this->totalOfRegisters / $this->per_page);
     }
 
     private function loadRegisters(): void
