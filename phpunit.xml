@@ -7,7 +7,7 @@
     <env name="APP_ENV" value="testing" />
     <env name="DB_HOST" value="db" />
     <env name="DB_PORT" value="3306" />
-    <env name="DB_DATABASE" value="mushroom__id_teste" />
+    <env name="DB_DATABASE" value="mushroom_id_teste" />
     <env name="DB_USERNAME" value="admin" />
     <env name="DB_PASSWORD" value="admin" />
   </php>

@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS mushroom_id_teste;
+USE mushroom_id_teste;
+
 SET foreign_key_checks = 0;
 
 DROP TABLE IF EXISTS users;

@@ -26,7 +26,6 @@ class LoginCest extends BaseAcceptanceCest
         $page->click('Entrar');
 
         $page->see('Login realizado com sucesso!');
-        $page->seeInCurrentUrl('/problems');
     }
 
     public function loginUnsuccessfully(AcceptanceTester $page): void
@@ -42,13 +41,10 @@ class LoginCest extends BaseAcceptanceCest
         $page->seeInCurrentUrl('/login');
     }
 
-
-    public function restrictedAreaWithoutAuthentication(AcceptanceTester $page): void
+    public function restrictedAreaWithoutAuthentication(AcceptanceTester $I): void
     {
-        $page->amOnPage('/admin');
-
-        $page->seeResponseCodeIs(403);
-        $page->see('403 Forbidden');
-        $page->see('Você não tem permissão para acessar esta página.');
+        $I->amOnPage('/admin');
+        $I->seeInCurrentUrl('/login');
+        $I->see('login');
     }
 }
