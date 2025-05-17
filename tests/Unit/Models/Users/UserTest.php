@@ -36,6 +36,11 @@ class UserTest extends TestCase
         $this->assertCount(2, User::all());
     }
 
+    public function test_should_create_new_usera(): void
+    {
+        $this->assertCount(2, User::all());
+    }
+
     public function test_all_should_return_all_users(): void
     {
         $this->user2->save();

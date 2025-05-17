@@ -1,0 +1,21 @@
+Db populate
+
+docker compose exec php php database/Populate/populate.php
+
+---------------------------------------------------------------------
+
+Run tests
+
+docker compose run --rm php ./vendor/bin/phpunit tests --color
+
+docker compose run --rm php ./vendor/bin/codecept run acceptance tests/Acceptance/Authentication/LoginCest.php --colors
+
+docker compose run --rm php ./vendor/bin/codecept run acceptance tests/Acceptance/Access/AccessCest.php --colors
+
+docker compose run --rm php ./vendor/bin/phpcs .
+
+docker compose run --rm php ./vendor/bin/phpstan analyse --memory-limit 1G .
+
+---------------------------------------------------------------------
+
+docker compose run --rm php ./vendor/bin/phpcbf .
