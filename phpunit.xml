@@ -8,7 +8,7 @@
     <env name="DB_HOST" value="db" />
     <env name="DB_PORT" value="3306" />
     <env name="DB_DATABASE" value="mushroom_id_teste" />
-    <env name="DB_USERNAME" value="admin" />
-    <env name="DB_PASSWORD" value="admin" />
+    <env name="DB_USERNAME" value="root" />
+    <env name="DB_PASSWORD" value="" />
   </php>
 </phpunit>
