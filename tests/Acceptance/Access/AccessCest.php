@@ -4,7 +4,7 @@ namespace Tests\Acceptance;
 
 use Tests\Support\AcceptanceTester;
 
-class AccessCest
+class AccessCest extends BaseAcceptanceCest
 {
     public function authenticatedUserCanAccessMushroomsPage(AcceptanceTester $I): void
     {

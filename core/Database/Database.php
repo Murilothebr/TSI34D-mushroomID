@@ -2,7 +2,6 @@
 
 namespace Core\Database;
 
-use Core\Constants\Constants;
 use PDO;
 
 class Database
@@ -48,7 +47,7 @@ class Database
 
     public static function migrate(): void
     {
-        $sql = file_get_contents(Constants::databasePath()->join('schema.sql'));
+        $sql = file_get_contents('init.sql');
         self::getDatabaseConn()->exec($sql);
     }
 
