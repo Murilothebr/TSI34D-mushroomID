@@ -9,6 +9,7 @@ USE mushroom_id_teste;
 
 SET foreign_key_checks = 0;
 
+DROP TABLE IF EXISTS mushrooms;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -19,12 +20,22 @@ CREATE TABLE users (
     is_admin TINYINT(1) DEFAULT 0
 );
 
+CREATE TABLE mushrooms (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  scientific_name VARCHAR(100) UNIQUE,
+  image_url VARCHAR(2083),
+  hint VARCHAR(255),
+  description TEXT,
+  created_at DATETIME
+);
+
 SET foreign_key_checks = 1;
 
 USE mushroom_id;
 
 SET foreign_key_checks = 0;
 
+DROP TABLE IF EXISTS mushrooms;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -33,6 +44,15 @@ CREATE TABLE users (
     email VARCHAR(50) UNIQUE NOT NULL,
     encrypted_password VARCHAR(255) NOT NULL,
     is_admin TINYINT(1) DEFAULT 0
+);
+
+CREATE TABLE mushrooms (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  scientific_name VARCHAR(100) UNIQUE,
+  image_url VARCHAR(2083),
+  hint VARCHAR(255),
+  description TEXT,
+  created_at DATETIME
 );
 
 INSERT INTO users (name, email, encrypted_password, is_admin) VALUES
