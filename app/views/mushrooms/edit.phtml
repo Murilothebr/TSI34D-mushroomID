@@ -1,3 +1,16 @@
+<head>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        a.btn i[data-feather] {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            stroke-width: 2;
+            margin-right: 0.25em;
+        }
+    </style>
+</head>
+
 <form action="<?= route('mushrooms.update', ['id' => $mushroom->id]) ?>" method="PUT" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
     <input type="hidden" name="_method" value="PUT">
 
@@ -26,4 +39,11 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Atualizar</button>
+    <a href="/mushrooms" class="btn btn-outline-primary">
+        <i data-feather="arrow-left"></i> Voltar
+    </a>
+
+    <script>
+        feather.replace();
+    </script>
 </form>

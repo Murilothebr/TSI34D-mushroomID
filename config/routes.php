@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mushrooms/{id}', [MushroomsController::class, 'show'])->name('mushrooms.show');
     Route::get('/mushrooms/{id}/edit', [MushroomsController::class, 'edit'])->name('mushrooms.edit');
     Route::put('/mushrooms/{id}/update', [MushroomsController::class, 'update'])->name('mushrooms.update');
-    Route::delete('/mushrooms/{id}/delete', [MushroomsController::class, 'destroy'])->name('mushrooms.destroy');
+    Route::delete('/mushrooms/{id}', [MushroomsController::class, 'destroy'])->name('mushrooms.destroy');
 
     Route::get('/logout', [AuthenticationsController::class, 'destroy'])->name('users.logout');
 });

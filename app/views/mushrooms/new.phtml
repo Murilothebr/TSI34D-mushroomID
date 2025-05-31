@@ -1,3 +1,16 @@
+<head>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        a.btn i[data-feather] {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            stroke-width: 2;
+            margin-right: 0.25em;
+        }
+    </style>
+</head>
+
 <form action="<?= route('mushrooms.create') ?>" method="POST" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
     <div class="mb-3">
         <label for="scientific_name" class="form-label">Nome Científico</label>
@@ -24,4 +37,11 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Registrar</button>
+    <a href="/mushrooms" class="btn btn-outline-primary">
+        <i data-feather="arrow-left"></i> Voltar
+    </a>
+
+    <script>
+        feather.replace();
+    </script>
 </form>
