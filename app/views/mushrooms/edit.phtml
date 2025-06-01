@@ -11,7 +11,7 @@
     </style>
 </head>
 
-<form action="<?= route('mushrooms.update', ['id' => $mushroom->id]) ?>" method="PUT" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
+<form action="<?= route('mushrooms.update', ['id' => $mushroom->id]) ?>" method="POST" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
     <input type="hidden" name="_method" value="PUT">
 
     <div class="mb-3">
