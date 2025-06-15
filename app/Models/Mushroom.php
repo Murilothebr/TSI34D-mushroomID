@@ -16,7 +16,7 @@ use Core\Database\ActiveRecord\Model;
 class Mushroom extends Model
 {
     protected static string $table = 'mushrooms';
-    protected static array $columns = ['scientific_name', 'image_url', 'hint', 'description', 'created_at'];
+    protected static array $columns = ['id', 'scientific_name', 'image_url', 'hint', 'description', 'created_at'];
 
     public function validates(): void
     {

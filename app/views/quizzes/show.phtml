@@ -1,0 +1,21 @@
+<div class="card mx-auto mt-3" style="max-width: 600px;">
+    <div class="card-body text-center">
+        <h5 class="card-title mb-3"><?= htmlspecialchars($quiz->name) ?></h5>
+        <p><strong>Descrição:</strong><br><?= nl2br(htmlspecialchars($quiz->description ?? '')) ?></p>
+
+        <h6 class="mt-4">Cogumelos no Quiz:</h6>
+        <ul class="list-group">
+            <?php foreach ($quiz->mushrooms() as $m): ?>
+                <li class="list-group-item"><?= htmlspecialchars($m->scientific_name) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a href="<?= route('quizzes.index') ?>" class="btn btn-outline-primary">
+        <i data-feather="arrow-left"></i> Voltar
+    </a>
+</div>
+
+<script>feather.replace();</script>

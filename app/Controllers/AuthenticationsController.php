@@ -31,9 +31,7 @@ class AuthenticationsController extends Controller
                 $this->redirectTo(route('admin.index'));
             }
 
-            $this->redirectTo(route('mushrooms.index'));
-
-            $this->redirectTo(route('mushrooms.index'));
+            $this->redirectTo(route('root'));
         } else {
             FlashMessage::danger('Email e/ou senha inválidos!');
             $this->redirectTo(route('users.login'));

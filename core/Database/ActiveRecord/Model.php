@@ -302,8 +302,15 @@ abstract class Model
         $table = static::$table;
         $attributes = implode(', ', static::$columns);
 
+        $columns = static::$columns;
+        if (!in_array('id', $columns)) {
+            $selectColumns = implode(', ', $columns);
+        } else {
+            $selectColumns = 'id, ' . implode(', ', array_filter($columns, fn($col) => $col !== 'id'));
+        }
+
         $sql = <<<SQL
-            SELECT id, {$attributes} FROM {$table} WHERE 
+            SELECT {$selectColumns} FROM {$table} WHERE 
         SQL;
 
         $sqlConditions = array_map(function ($column) {
@@ -348,6 +355,31 @@ abstract class Model
     {
         $resp = self::where($conditions);
         return !empty($resp);
+    }
+
+    /**
+     * Deleta registros com base em condições
+     *
+     * @param array<string, mixed> $conditions
+     */
+    public static function deleteWhere(array $conditions): int
+    {
+        $table = static::$table;
+
+        $sql = "DELETE FROM {$table} WHERE ";
+        $sqlConditions = array_map(fn($column) => "{$column} = :{$column}", array_keys($conditions));
+        $sql .= implode(' AND ', $sqlConditions);
+
+        $pdo = Database::getDatabaseConn();
+        $stmt = $pdo->prepare($sql);
+
+        foreach ($conditions as $column => $value) {
+            $stmt->bindValue($column, $value);
+        }
+
+        $stmt->execute();
+
+        return $stmt->rowCount();
     }
 
     /* ------------------- RELATIONSHIPS METHODS ------------------- */
