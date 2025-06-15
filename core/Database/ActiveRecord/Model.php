@@ -382,6 +382,42 @@ abstract class Model
         return $stmt->rowCount();
     }
 
+    /**
+     * Busca registros com base em uma lista de valores - Criei para nao quebrar os outros metodos
+     *
+     * @param string $column
+     * @param array<int|string> $values
+     * @return array<static>
+     */
+    public static function whereIn(string $column, array $values): array
+    {
+        if (empty($values)) {
+            return [];
+        }
+
+        $table = static::$table;
+        $placeholders = implode(', ', array_fill(0, count($values), '?'));
+        $columns = static::selectColumns();
+
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$column} IN ({$placeholders})";
+
+        $pdo = Database::getDatabaseConn();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($values);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($row) => new static($row), $rows);
+    }
+
+    protected static function selectColumns(): string
+    {
+        $columns = static::$columns;
+        if (!in_array('id', $columns)) {
+            return implode(', ', $columns);
+        }
+        return 'id, ' . implode(', ', array_filter($columns, fn($col) => $col !== 'id'));
+    }
+
     /* ------------------- RELATIONSHIPS METHODS ------------------- */
 
     public function belongsTo(string $related, string $foreignKey): BelongsTo

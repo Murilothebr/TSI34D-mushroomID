@@ -45,6 +45,6 @@ class Quiz extends Model
     {
         $links = $this->quizMushrooms();
         $mushroomIds = array_map(fn($link) => $link->mushroom_id, $links);
-        return Mushroom::all(['id' => $mushroomIds]);
+        return Mushroom::whereIn('id', $mushroomIds);
     }
 }
