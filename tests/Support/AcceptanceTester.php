@@ -22,6 +22,7 @@ use Tests\Support;
  * @method void amOnPage(string $url)
  * @method void fillField(string $field, string $value)
  * @method void click(string $button)
+ * @method void click(string|array $button)
  * @method void see(string $text, string $selector = NULL)
  * @method void seeInCurrentUrl(string $url)
  *

@@ -18,12 +18,12 @@ services:
       - app-network
 
   php:
+    container_name: php
     env_file:
       - .env
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php
     working_dir: /var/www
     volumes:
       - .:/var/www
@@ -33,6 +33,7 @@ services:
       - db
 
   web:
+    container_name: web
     image: nginx:latest
     working_dir: /var/www
     volumes:

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Mushroom;
 use Core\Http\Controllers\Controller;
 use Core\Http\Request;
+use Exception;
 use Lib\FlashMessage;
 
 class MushroomsController extends Controller
@@ -87,11 +88,21 @@ class MushroomsController extends Controller
 
     public function destroy(Request $request): void
     {
-        $params = $request->getParams();
-        $mushroom = Mushroom::findById($params['id']);
-        $mushroom->destroy();
+        $id = $request->getParam('id');
+        $mushroom = Mushroom::findById($id);
 
-        FlashMessage::success('Cogumelo removido com sucesso!');
+        if (!$mushroom) {
+            FlashMessage::danger('Cogumelo não encontrado.');
+            $this->redirectTo(route('mushrooms.index'));
+        }
+
+        try {
+            $mushroom->destroy();
+            FlashMessage::success('Cogumelo removido com sucesso!');
+        } catch (Exception $e) {
+            FlashMessage::danger('Não é possível remover este cogumelo, pois ele está vinculado a um ou mais quizzes.');
+        }
+
         $this->redirectTo(route('mushrooms.index'));
     }
 }

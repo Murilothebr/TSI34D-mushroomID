@@ -302,8 +302,15 @@ abstract class Model
         $table = static::$table;
         $attributes = implode(', ', static::$columns);
 
+        $columns = static::$columns;
+        if (!in_array('id', $columns)) {
+            $selectColumns = implode(', ', $columns);
+        } else {
+            $selectColumns = 'id, ' . implode(', ', array_filter($columns, fn($col) => $col !== 'id'));
+        }
+
         $sql = <<<SQL
-            SELECT id, {$attributes} FROM {$table} WHERE 
+            SELECT {$selectColumns} FROM {$table} WHERE 
         SQL;
 
         $sqlConditions = array_map(function ($column) {
@@ -348,6 +355,67 @@ abstract class Model
     {
         $resp = self::where($conditions);
         return !empty($resp);
+    }
+
+    /**
+     * Deleta registros com base em condições
+     *
+     * @param array<string, mixed> $conditions
+     */
+    public static function deleteWhere(array $conditions): int
+    {
+        $table = static::$table;
+
+        $sql = "DELETE FROM {$table} WHERE ";
+        $sqlConditions = array_map(fn($column) => "{$column} = :{$column}", array_keys($conditions));
+        $sql .= implode(' AND ', $sqlConditions);
+
+        $pdo = Database::getDatabaseConn();
+        $stmt = $pdo->prepare($sql);
+
+        foreach ($conditions as $column => $value) {
+            $stmt->bindValue($column, $value);
+        }
+
+        $stmt->execute();
+
+        return $stmt->rowCount();
+    }
+
+    /**
+     * Busca registros com base em uma lista de valores - Criei para nao quebrar os outros metodos
+     *
+     * @param string $column
+     * @param array<int|string> $values
+     * @return array<static>
+     */
+    public static function whereIn(string $column, array $values): array
+    {
+        if (empty($values)) {
+            return [];
+        }
+
+        $table = static::$table;
+        $placeholders = implode(', ', array_fill(0, count($values), '?'));
+        $columns = static::selectColumns();
+
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$column} IN ({$placeholders})";
+
+        $pdo = Database::getDatabaseConn();
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($values);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return array_map(fn($row) => new static($row), $rows);
+    }
+
+    protected static function selectColumns(): string
+    {
+        $columns = static::$columns;
+        if (!in_array('id', $columns)) {
+            return implode(', ', $columns);
+        }
+        return 'id, ' . implode(', ', array_filter($columns, fn($col) => $col !== 'id'));
     }
 
     /* ------------------- RELATIONSHIPS METHODS ------------------- */

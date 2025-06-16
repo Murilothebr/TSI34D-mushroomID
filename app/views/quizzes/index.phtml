@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-8 mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Procurar quizzes" aria-label="Procurar quizzes">
+            <button class="btn btn-outline-primary" type="button">Pesquisar...</button>
+        </div>
+    </div>
+    <div class="col-4">
+        <a href="<?= route('quizzes.new') ?>" class="btn btn-outline-primary">
+            <i data-feather="plus"></i>
+            Criar Quiz
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($quizzes as $quiz): ?>
+            <tr>
+                <td><a href="<?= route('quizzes.show', ['id' => $quiz->id]) ?>">#<?= $quiz->id ?></a></td>
+                <td><?= htmlspecialchars($quiz->name) ?></td>
+                <td class="text-end">
+                    <a href="<?= route('quizzes.edit', ['id' => $quiz->id]) ?>" class="btn btn-link p-0">
+                        <i class="bi bi-pencil-square fs-5"></i>
+                    </a>
+                    <form action="<?= route('quizzes.destroy', ['id' => $quiz->id]) ?>" method="POST" class="d-inline m-0">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-link p-0">
+                            <i class="bi bi-trash text-danger fs-5"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?php $paginator->renderPagesNavigation(); ?>
+
+<script>feather.replace();</script>

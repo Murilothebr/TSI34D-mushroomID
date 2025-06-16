@@ -1,0 +1,53 @@
+<form action="<?= route('quizzes.update', ['id' => $quiz->id]) ?>" method="POST" class="<?= $quiz->hasErrors() ? 'was-validated' : '' ?>" novalidate>
+    <input type="hidden" name="_method" value="PUT">
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome do Quiz</label>
+        <input type="text" name="quiz[name]" id="name" class="form-control" value="<?= $quiz->name ?>" required>
+        <div class="invalid-feedback"><?= $quiz->errors('name') ?? '' ?></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <textarea name="quiz[description]" id="description" class="form-control"><?= $quiz->description ?></textarea>
+        <div class="invalid-feedback"><?= $quiz->errors('description') ?? '' ?></div>
+    </div>
+
+    <div class="mb-3">
+        <label for="mushrooms" class="form-label">Cogumelos</label>
+        <select name="quiz[mushroom_ids][]" id="mushrooms" class="form-control js-choices" multiple required>
+            <?php foreach ($allMushrooms as $m): ?>
+                <option value="<?= $m->id ?>" <?= in_array($m->id, $quiz->mushroom_ids ?? []) ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($m->scientific_name) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <div class="invalid-feedback"><?= $quiz->errors('mushroom_ids') ?? '' ?></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Atualizar Quiz</button>
+    <a href="<?= route('quizzes.index') ?>" class="btn btn-outline-primary">
+        <i data-feather="arrow-left"></i> Voltar
+    </a>
+</form>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+
+        const mushroomSelect = document.querySelector('.js-choices');
+        if (mushroomSelect) {
+            new Choices(mushroomSelect, {
+                removeItemButton: true,
+                placeholderValue: 'Selecione os cogumelos',
+                searchPlaceholderValue: 'Buscar...',
+                noResultsText: 'Nenhum cogumelo encontrado',
+                noChoicesText: 'Sem opções disponíveis',
+            });
+        }
+    });
+</script>
