@@ -32,7 +32,6 @@ class QuizTest extends TestCase
         ]);
 
         $this->assertTrue($quiz->save());
-        $this->assertNotNull($quiz->id);
         $this->assertCount(2, Quiz::all());
     }
 

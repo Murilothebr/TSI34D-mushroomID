@@ -5,7 +5,6 @@ use App\Controllers\HomeController;
 use App\Controllers\AuthenticationsController;
 use App\Controllers\MushroomsController;
 use App\Controllers\QuizzesController;
-
 use Core\Router\Route;
 
 // Authentication

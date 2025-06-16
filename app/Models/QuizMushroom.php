@@ -23,7 +23,8 @@ class QuizMushroom extends Model
      */
     public function quiz(): ?Quiz
     {
-        return $this->belongsTo(Quiz::class, 'quiz_id')->get();
+        $quiz = $this->belongsTo(Quiz::class, 'quiz_id')->get();
+        return $quiz instanceof Quiz ? $quiz : null;
     }
 
     /**
@@ -31,6 +32,7 @@ class QuizMushroom extends Model
      */
     public function mushroom(): ?Mushroom
     {
-        return $this->belongsTo(Mushroom::class, 'mushroom_id')->get();
+        $mushroom = $this->belongsTo(Mushroom::class, 'mushroom_id')->get();
+        return $mushroom instanceof Mushroom ? $mushroom : null;
     }
 }

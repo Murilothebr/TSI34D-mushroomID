@@ -28,7 +28,7 @@ class AuthenticationsController extends Controller
             FlashMessage::success('Login realizado com sucesso!');
 
             if ($user->is_admin) {
-                $this->redirectTo(route('admin.index'));
+                $this->redirectTo(route('mushrooms.index'));
             }
 
             $this->redirectTo(route('root'));

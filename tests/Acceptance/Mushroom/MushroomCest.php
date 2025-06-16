@@ -11,16 +11,16 @@ class MushroomsCest extends BaseAcceptanceCest
     {
         $user = new User([
             'name'                  => 'User 1',
-            'email'                 => 'fulano@example.com',
-            'password'              => '123456',
-            'password_confirmation' => '123456',
-            'is_admin'              => 0
+            'email'                 => 'admin@example.com',
+            'password'              => 'admin123',
+            'password_confirmation' => 'admin123',
+            'is_admin'              => 1
         ]);
         $user->save();
 
         $I->amOnPage('/login');
         $I->fillField('user[email]', $user->email);
-        $I->fillField('user[password]', '123456');
+        $I->fillField('user[password]', 'admin123');
         $I->click('Entrar');
         $I->seeCurrentUrlEquals('/mushrooms');
     }
@@ -91,7 +91,7 @@ class MushroomsCest extends BaseAcceptanceCest
         $this->login($I);
 
         $I->amOnPage('/mushrooms/new');
-        $I->fillField('mushroom[scientific_name]', null);
+        $I->fillField('mushroom[scientific_name]', '');
         $I->fillField('mushroom[image_url]', 'http://example.com/invalid.jpg');
         $I->fillField('mushroom[hint]', 'Invalid entry');
         $I->fillField('mushroom[description]', 'Should have validation errors.');

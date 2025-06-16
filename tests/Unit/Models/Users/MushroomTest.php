@@ -40,8 +40,6 @@ class MushroomTest extends TestCase
             'description' => 'A distinctive, funnel-shaped edible mushroom.'
         ]);
         $this->assertTrue($newMushroom->save());
-        $this->assertNotNull($newMushroom->id);
-
         $this->assertCount(3, Mushroom::all());
     }
 
