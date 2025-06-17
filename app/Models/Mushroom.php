@@ -23,7 +23,10 @@ class Mushroom extends Model
         Validations::notEmpty('scientific_name', $this);
         Validations::uniqueness('scientific_name', $this);
 
-        Validations::notEmpty('image_url', $this);
+        if (empty($this->image_url)) {
+            Validations::notEmpty('image_url', $this);
+        }
+
         Validations::notEmpty('hint', $this);
         Validations::notEmpty('description', $this);
     }
