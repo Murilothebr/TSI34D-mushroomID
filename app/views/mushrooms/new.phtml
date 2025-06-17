@@ -11,7 +11,7 @@
     </style>
 </head>
 
-<form action="<?= route('mushrooms.create') ?>" method="POST" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
+<form action="<?= route('mushrooms.create') ?>" method="POST" enctype="multipart/form-data" class="<?= $mushroom->hasErrors() ? 'was-validated' : '' ?>" novalidate>
     <div class="mb-3">
         <label for="scientific_name" class="form-label">Nome Científico</label>
         <input type="text" value="<?= $mushroom->scientific_name ?>" name="mushroom[scientific_name]" class="form-control" id="scientific_name" required>
@@ -19,8 +19,8 @@
     </div>
 
     <div class="mb-3">
-        <label for="image_url" class="form-label">URL da Imagem</label>
-        <input type="url" value="<?= $mushroom->image_url ?>" name="mushroom[image_url]" class="form-control" id="image_url" required>
+        <label for="image_file" class="form-label">Imagem</label>
+        <input type="file" name="image_file" accept="image/*" class="form-control" id="image_file" required>
         <div class="invalid-feedback"><?= $mushroom->errors('image_url') ?? '' ?></div>
     </div>
 

@@ -15,8 +15,8 @@
     <div class="card mx-auto mt-3" style="max-width: 500px;">
         <div class="card-body text-center">
             <h5 class="card-title mb-3"><?= htmlspecialchars($mushroom->scientific_name) ?></h5>
-            <p><strong>Description:</strong><br> <?= nl2br(htmlspecialchars($mushroom->description ?? '')) ?></p>
-            <p><strong>Hint:</strong><br> <?= htmlspecialchars($mushroom->hint ?? '') ?></p>
+            <p><strong>Descrição:</strong><br> <?= nl2br(htmlspecialchars($mushroom->description ?? '')) ?></p>
+            <p><strong>Dica:</strong><br> <?= htmlspecialchars($mushroom->hint ?? '') ?></p>
         </div>
 
         <?php
@@ -27,7 +27,7 @@
                 src="<?= htmlspecialchars($img) ?>"
                 alt="<?= htmlspecialchars($mushroom->scientific_name) ?>"
                 class="img-fluid mt-3"
-                style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                style="max-width: 100%; height: auto; display: block; margin: 0 auto 1.5rem;">
         <?php else: ?>
             <p class="text-center"><em>Imagem não disponível</em></p>
         <?php endif; ?>
